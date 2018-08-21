@@ -16,4 +16,12 @@ inputs = [1, 0, 1] # inputs[weather, train, leave]
 weights = [2, 2, 6] # weights[weather, train, leave]
 
 def perceptron(inputs, weights, bias):
-    
+    productAndSumOfInputsWeight = (inputs * weights).sum()
+    print ('Product Array:', productAndSumOfInputsWeight)
+
+    if productAndSumOfInputsWeight + (-bias) <= 0:
+        return 0
+    return 1
+
+
+print('Am I going to Festival:', perceptron(np.array(inputs), np.array(weights), 5))
