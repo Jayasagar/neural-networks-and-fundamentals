@@ -1,6 +1,8 @@
 import numpy as np
 import math
 
+from matplotlib import pyplot
+
 print('Exponent of a large number', math.exp(-3439) )
 
 '''
