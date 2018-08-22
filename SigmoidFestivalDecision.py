@@ -1,6 +1,8 @@
 import numpy as np
 import math
 
+import matplotlib
+matplotlib.use('TkAgg')
 from matplotlib import pyplot
 
 print('Exponent of a large number', math.exp(-3439) )
@@ -53,7 +55,7 @@ def simulateSigmoidAsPerceptron(inputs, weights, bias):
             print('index:', index)
             input = inputs[index]
             weight = weights[index]
-            sigmoidValue = sigmoid(inputs, weights, bias)
+            sigmoidValue = sigmoid(inputs, weights, bias[index])
             print('sigmoid Output:', sigmoidValue)
             outputs.append(sigmoidValue)
         return outputs;
@@ -73,6 +75,14 @@ print ('sigmoidSimulationInput Array Shape:', sigmoidSimulationInput.shape)
 
 inputsList = sigmoidSimulationInput[:, :, 0]
 weightsList = sigmoidSimulationInput[:, :, 1]
+biasList = [4, 5, 6]
 
 # print ('Get Inputs from sigmoidSimulationInput', sigmoidSimulationInput[:, :, 0])
-print('simulateSigmoidAsPerceptron:', simulateSigmoidAsPerceptron(np.array(inputsList), np.array(weightsList), 4))
+
+sigmoidOutputs =  simulateSigmoidAsPerceptron(np.array(inputsList), np.array(weightsList), biasList)
+print('simulateSigmoidAsPerceptron:', sigmoidOutputs)
+
+pyplot.plot(sigmoidOutputs, biasList)
+pyplot.xlabel('Sigmoid output')
+pyplot.ylabel('Bias value')
+pyplot.show()
