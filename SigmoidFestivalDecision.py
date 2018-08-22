@@ -39,10 +39,13 @@ Show that the behaviour of the network doesn't change
 '''
 def simulateSigmoidAsPerceptron(inputs, weights, bias):
     # Weight should positive number > 0
-    productAndSumOfInputsWeight = (inputs * weights).sum()
-    print ('Product Array:', productAndSumOfInputsWeight)
+    productOfInputsWeight = (inputs * weights)
+    print ('Product of Array:', productOfInputsWeight)
+    sum = productOfInputsWeight.sum()
+    print('Sum of Array', sum)
 
-    z = productAndSumOfInputsWeight + (-bias)
+    z = sum + (-bias)
+    print('Perceptron output:', z)
 
     # Sigmoid value should not impact the netwowrk as it alwys greater than 1.
     sigmoid = 1 / 1 + math.exp(-z)
@@ -55,4 +58,9 @@ sigmoidSimulationInput = np.array([
 ])
 
 print ('sigmoidSimulationInput Array Shape:', sigmoidSimulationInput.shape)
-# print('simulateSigmoidAsPerceptron:', simulateSigmoidAsPerceptron(np.array(inputs), np.array(weights), 4))
+
+inputsList = sigmoidSimulationInput[:, :, 0]
+weightsList = sigmoidSimulationInput[:, :, 1]
+
+# print ('Get Inputs from sigmoidSimulationInput', sigmoidSimulationInput[:, :, 0])
+print('simulateSigmoidAsPerceptron:', simulateSigmoidAsPerceptron(np.array(inputsList), np.array(weightsList), 4))
