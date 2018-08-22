@@ -20,11 +20,15 @@ inputs = [0, 0, 1] # inputs[weather, train, leave]
 weights = [2, 3, 5] # weights[weather, train, leave]
 
 def sigmoid(inputs, weights, bias):
-    productAndSumOfInputsWeight = (inputs * weights).sum()
-    print ('Product Array:', productAndSumOfInputsWeight)
+    productOfInputsWeight = (inputs * weights)
+    print ('Product of Array:', productOfInputsWeight, ', Length: ', productOfInputsWeight.ndim)
+    sum = productOfInputsWeight.sum()
+    print('Sum of Array', sum)
 
-    z = productAndSumOfInputsWeight + (-bias)
+    z = sum + (-bias)
+    print('Perceptron output:', z)
 
+    # Sigmoid value should not impact the netwowrk as it alwys greater than 1.
     sigmoid = 1 / 1 + math.exp(-z)
     return sigmoid
 
@@ -38,18 +42,24 @@ Suppose we take all the weights and biases in a network of perceptrons, and mult
 Show that the behaviour of the network doesn't change
 '''
 def simulateSigmoidAsPerceptron(inputs, weights, bias):
+
+    outputs = []
+    global sigmoid
+
+    if inputs.ndim == 2:
+        for index in range(len(inputs)):
+            print('index:', index)
+            input = inputs[index]
+            weight = weights[index]
+            sigmoidValue = sigmoid(inputs, weights, bias)
+            print('sigmoid Output:', sigmoidValue)
+            outputs.append(sigmoidValue)
+        return outputs;
+
+    # If number of dimensions is 1
+
     # Weight should positive number > 0
-    productOfInputsWeight = (inputs * weights)
-    print ('Product of Array:', productOfInputsWeight)
-    sum = productOfInputsWeight.sum()
-    print('Sum of Array', sum)
-
-    z = sum + (-bias)
-    print('Perceptron output:', z)
-
-    # Sigmoid value should not impact the netwowrk as it alwys greater than 1.
-    sigmoid = 1 / 1 + math.exp(-z)
-    return sigmoid
+    return sigmoid(inputs, outputs, bias)
 
 sigmoidSimulationInput = np.array([
     [[0, 2], [0, 3], [1, 5]],
