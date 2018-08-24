@@ -33,7 +33,7 @@ def sigmoid(inputs, weights, bias):
     print('Perceptron output:', z)
 
     # Sigmoid value should not impact the netwowrk as it alwys greater than 1.
-    sigmoid = 1 / 1 + math.exp(-z)
+    sigmoid = 1 / 1 + np.exp(-z)
     return sigmoid
 
 
@@ -58,7 +58,7 @@ def simulateSigmoidAsPerceptron(inputs, weights, bias):
             sigmoidValue = sigmoid(inputs, weights, bias[index])
             print('sigmoid Output:', sigmoidValue)
             outputs.append(sigmoidValue)
-        return outputs;
+        return outputs
 
     # If number of dimensions is 1
 
@@ -82,7 +82,7 @@ biasList = [4, 5, 6]
 sigmoidOutputs =  simulateSigmoidAsPerceptron(np.array(inputsList), np.array(weightsList), biasList)
 print('simulateSigmoidAsPerceptron:', sigmoidOutputs)
 
-pyplot.plot(sigmoidOwutputs, biasList)
+pyplot.plot(sigmoidOutputs, biasList)
 pyplot.xlabel('Sigmoid output')
 pyplot.ylabel('Bias value')
 pyplot.show()
