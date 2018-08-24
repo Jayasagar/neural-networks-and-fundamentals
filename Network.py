@@ -16,3 +16,13 @@ class Network(object):
 
     def sigmoid(self, z):
         return 1/(1 + np.exp(-z))
+
+    '''
+    This method helps to calculate the output from a particular LAYER  based on input, weight and bias
+    a is input 
+    '''
+    def feedForward(self, a):
+        for b, w in zip(self.biases, self.weights):
+            a = self.sigmoid(np.dot(w, a) + b)
+        return a
+    
