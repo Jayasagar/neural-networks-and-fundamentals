@@ -82,7 +82,7 @@ biasList = [4, 5, 6]
 sigmoidOutputs =  simulateSigmoidAsPerceptron(np.array(inputsList), np.array(weightsList), biasList)
 print('simulateSigmoidAsPerceptron:', sigmoidOutputs)
 
-pyplot.plot(sigmoidOutputs, biasList)
+pyplot.plot(sigmoidOwutputs, biasList)
 pyplot.xlabel('Sigmoid output')
 pyplot.ylabel('Bias value')
 pyplot.show()
