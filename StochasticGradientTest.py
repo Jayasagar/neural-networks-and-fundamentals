@@ -1,11 +1,15 @@
 import Network as Network
-from keras.datasets import mnist
+# from keras.datasets import mnist
+# TensorFlow and tf.keras
+import tensorflow as tf
+from tensorflow import keras
 
 def main():
     print('Hello')
-    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    fashion_mnist = keras.datasets.fashion_mnist
+    (train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
     net = Network([784, 30, 10])
-    net.SGD(x_train, 30, 10, 3.0, test_data=x_test)
+    net.SGD(train_images, 30, 10, 3.0, test_data=test_images)
 
 
 if __name__ == '__main__':
