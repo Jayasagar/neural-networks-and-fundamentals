@@ -14,6 +14,7 @@ class Network(object):
         '''
         self.biases = [np.random.randn(y, 1) for y in sizes[1:]]
         self.weights = [np.random.randn(y, x) for x, y in zip(sizes[:-1], sizes[1:])]
+        print('GIevn sizes:', sizes)
 
     def sigmoid(self, z):
         return 1/(1 + np.exp(-z))
@@ -31,7 +32,7 @@ class Network(object):
             a = self.sigmoid(np.dot(w, a) + b)
         return a
 
-    def SDG(self, training_data, epochs, mini_batch_size, eta, test_data=None):
+    def SGD(self, training_data, epochs, mini_batch_size, eta, test_data=None):
         '''
         Train the neural network using mini-batch stochastic gradient descent.
         The training_data is a list of tuples (x, y) representing the training inputs and the desired outputs.
@@ -41,7 +42,7 @@ class Network(object):
         ``eta`` is the learning rate.
         '''
 
-        if test_data:
+        if test_data is not None:
             n_test = len(test_data)
         n = len(training_data) # 50k records MNSIT dataset
         for j in range(epochs):
@@ -67,6 +68,7 @@ class Network(object):
         '''
         nabla_b = [np.zeros(b.shape) for b in self.biases]
         nabla_w = [np.zeros(w.shape) for w in self.weights]
+        print(mini_batch)
         for x, y in mini_batch:
             delta_nabla_b, delta_nabla_w = self.backprop(x, y)
             nabla_b = [nb + dnb for nb, dnb in zip(nabla_b, delta_nabla_b)]
